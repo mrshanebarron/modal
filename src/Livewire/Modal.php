@@ -2,55 +2,49 @@
 
 namespace MrShaneBarron\Modal\Livewire;
 
-use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Modal extends Component
 {
     public bool $show = false;
     public string $size = 'md';
-    public string $title = '';
     public bool $closeOnEscape = true;
-    public bool $closeOnBackdrop = true;
-    public bool $showCloseButton = true;
-    public string $type = 'modal'; // modal, slideover
+    public bool $closeOnOverlay = true;
+    public ?string $title = null;
 
     protected $listeners = ['openModal' => 'open', 'closeModal' => 'close'];
 
     public function mount(
         bool $show = false,
         string $size = 'md',
-        string $title = '',
         bool $closeOnEscape = true,
-        bool $closeOnBackdrop = true,
-        bool $showCloseButton = true,
-        string $type = 'modal'
+        bool $closeOnOverlay = true,
+        ?string $title = null
     ): void {
         $this->show = $show;
         $this->size = $size;
-        $this->title = $title;
         $this->closeOnEscape = $closeOnEscape;
-        $this->closeOnBackdrop = $closeOnBackdrop;
-        $this->showCloseButton = $showCloseButton;
-        $this->type = $type;
+        $this->closeOnOverlay = $closeOnOverlay;
+        $this->title = $title;
     }
 
     public function open(): void
     {
         $this->show = true;
-        $this->dispatch('modal-opened');
     }
 
     public function close(): void
     {
         $this->show = false;
-        $this->dispatch('modal-closed');
     }
 
-    public function render(): View
+    public function toggle(): void
     {
-        return view('ld-modal::components.modal', [
-            'sizeClass' => config("ld-modal.sizes.{$this->size}", 'max-w-md'),
-        ]);
+        $this->show = !$this->show;
+    }
+
+    public function render()
+    {
+        return view('ld-modal::livewire.modal');
     }
 }
