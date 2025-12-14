@@ -4,6 +4,6 @@ export { Modal };
 
 export default {
   install(app) {
-    app.component('LdModal', Modal);
+    app.component('SbModal', Modal);
   }
 };

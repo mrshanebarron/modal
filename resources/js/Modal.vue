@@ -52,7 +52,7 @@
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue';
 
 export default {
-  name: 'LdModal',
+  name: 'SbModal',
   props: {
     modelValue: { type: Boolean, default: false },
     size: { type: String, default: 'md' },

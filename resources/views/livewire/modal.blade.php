@@ -1,22 +1,22 @@
 @php
-    $sizeClass = config('ld-modal.sizes.' . $size, config('ld-modal.sizes.md'));
+    $sizeClass = config('sb-modal.sizes.' . $size, config('sb-modal.sizes.md'));
 @endphp
 
 <div>
     @if($show)
         {{-- Overlay --}}
         <div
-            class="{{ config('ld-modal.classes.overlay') }}"
+            class="{{ config('sb-modal.classes.overlay') }}"
             @if($closeOnOverlay) wire:click="close" @endif
             wire:transition.opacity
         ></div>
 
         {{-- Modal Container --}}
-        <div class="{{ config('ld-modal.classes.container') }}">
+        <div class="{{ config('sb-modal.classes.container') }}">
             <div class="flex min-h-full items-center justify-center p-4">
                 {{-- Modal Panel --}}
                 <div
-                    class="{{ config('ld-modal.classes.panel') }} {{ $sizeClass }} w-full"
+                    class="{{ config('sb-modal.classes.panel') }} {{ $sizeClass }} w-full"
                     @if($closeOnEscape)
                         x-data
                         x-on:keydown.escape.window="$wire.close()"
@@ -24,7 +24,7 @@
                 >
                     {{-- Header --}}
                     @if($title || isset($header))
-                        <div class="{{ config('ld-modal.classes.header') }}">
+                        <div class="{{ config('sb-modal.classes.header') }}">
                             <h3 class="text-lg font-semibold text-gray-900">
                                 {{ $title ?? $header ?? '' }}
                             </h3>
@@ -40,13 +40,13 @@
                     @endif
 
                     {{-- Body --}}
-                    <div class="{{ config('ld-modal.classes.body') }}">
+                    <div class="{{ config('sb-modal.classes.body') }}">
                         {{ $slot }}
                     </div>
 
                     {{-- Footer --}}
                     @if(isset($footer))
-                        <div class="{{ config('ld-modal.classes.footer') }}">
+                        <div class="{{ config('sb-modal.classes.footer') }}">
                             {{ $footer }}
                         </div>
                     @endif
