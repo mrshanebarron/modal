@@ -8,7 +8,7 @@ class ModalServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/modal.php', 'sb-modal');
+        $this->mergeConfigFrom(__DIR__ . '/../config/sb-modal.php', 'sb-modal');
     }
 
     public function boot(): void
@@ -21,7 +21,7 @@ class ModalServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__ . '/../config/modal.php' => config_path('sb-modal.php'),
+                __DIR__ . '/../config/sb-modal.php' => config_path('sb-modal.php'),
             ], 'sb-modal-config');
         }
     }
