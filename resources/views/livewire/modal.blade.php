@@ -41,13 +41,13 @@
 
                     {{-- Body --}}
                     <div class="{{ config('sb-modal.classes.body') }}">
-                        {{ $slot }}
+                        {{ $slot ?? '' }}
                     </div>
 
                     {{-- Footer --}}
                     @if(isset($footer))
                         <div class="{{ config('sb-modal.classes.footer') }}">
-                            {{ $footer }}
+                            {{ $footer ?? '' }}
                         </div>
                     @endif
                 </div>
