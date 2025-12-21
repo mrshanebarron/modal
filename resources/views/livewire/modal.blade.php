@@ -6,15 +6,15 @@ $sizeStyles = [
     'xl' => 'max-width: 36rem;',
     '2xl' => 'max-width: 42rem;',
 ];
-$modalSize = $sizeStyles[$size] ?? $sizeStyles['md'];
+$modalSize = $sizeStyles[$this->size] ?? $sizeStyles['md'];
 @endphp
 
 <div>
-    @if($show)
+    @if($this->show)
         {{-- Overlay --}}
         <div
             style="position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.5); z-index: 40;"
-            @if($closeOnOverlay) wire:click="close" @endif
+            @if($this->closeOnOverlay) wire:click="close" @endif
         ></div>
 
         {{-- Modal Container --}}
@@ -24,15 +24,15 @@ $modalSize = $sizeStyles[$size] ?? $sizeStyles['md'];
                 <div
                     style="background-color: white; border-radius: 0.75rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); width: 100%; {{ $modalSize }}"
                     x-data
-                    @if($closeOnEscape)
+                    @if($this->closeOnEscape)
                         x-on:keydown.escape.window="$wire.close()"
                     @endif
                 >
                     {{-- Header --}}
-                    @if($title)
+                    @if($this->title)
                         <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; border-bottom: 1px solid #e5e7eb;">
                             <h3 style="font-size: 1.125rem; font-weight: 600; color: #111827; margin: 0;">
-                                {{ $title }}
+                                {{ $this->title }}
                             </h3>
                             <button
                                 wire:click="close"
@@ -49,8 +49,8 @@ $modalSize = $sizeStyles[$size] ?? $sizeStyles['md'];
 
                     {{-- Body --}}
                     <div style="padding: 1.5rem;">
-                        @if($content)
-                            {!! $content !!}
+                        @if($this->content)
+                            {!! $this->content !!}
                         @endif
                     </div>
                 </div>
